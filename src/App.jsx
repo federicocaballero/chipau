@@ -1,11 +1,12 @@
 import './App.css';
 import PizzaCard from './components/pizzaCard';
+import PizzaMenu from './containers/pizzaMenu';
 
 function App() {
   return (
     <div>
-      <h1>holis</h1>
-      <PizzaCard/>
+      <PizzaMenu/>
+      {/* <PizzaCard/> */}
     </div>
   );
 }
