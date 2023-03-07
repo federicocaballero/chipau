@@ -12,6 +12,21 @@ const PizzaMenu = () => {
     ] 
     
     const [cart, setcart] = useState([])
+    const [cuenta, setcuenta] = useState([])
+          
+    function allFunctions(nombre, precio) {
+        setcart(cart.concat(nombre));
+        setcuenta(cuenta.concat(precio))
+        }    
+    
+    function suma(){
+       let suma = 0;
+       cuenta.forEach (function(numero){
+           suma += numero;
+       });
+       
+       return suma;
+    }
     return(
         <>
 
@@ -23,8 +38,9 @@ const PizzaMenu = () => {
                             <PizzaCard img={pizza.img} title={pizza.nombre} ingredientes={pizza.ingredientes} precioEntera={pizza.precioEntera} precioMitad={pizza.precioMitad}/>  
                             
                             <div className="d-flex justify-content-around">
-                                <button onClick={() => setcart(cart.concat(pizza.nombreEntera))} className="btn btn-primary">Entera: ${pizza.precioEntera}</button>
-                                <button onClick={() => setcart(cart.concat(pizza.nombreMedia))} className="btn btn-primary">Mitad: ${pizza.precioMitad}</button>
+                                <button onClick={() => allFunctions(pizza.nombreEntera, pizza.precioEntera)} className="btn btn-primary">ggggg: ${pizza.precioEntera}</button>
+                                <button onClick={() => allFunctions(pizza.nombreMedia, pizza.precioMitad)} className="btn btn-primary">dasdsaa: ${pizza.precioMitad}</button>
+                                
                             </div>
                                         
                            </div>   
@@ -37,6 +53,7 @@ const PizzaMenu = () => {
             <button><h1>Lista del pedido: {cart.map(function(e){
                 return <p>{e} <br /></p> 
             })}  </h1></button>
+            <button><h1>Precio total {suma()} +envio </h1></button>
             
             <a href={`https://wa.me/3704556925?text=${encodeURIComponent(cart)}`}>
             <button>completar pedido</button>
