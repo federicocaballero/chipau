@@ -10,7 +10,7 @@ function App() {
       <PizzaMenu/>
       {/* <PizzaCard/> */}
       <FormControl/>
-      <FormAdress/>
+      {/* <FormAdress/> */}
     </div>
   );
 }

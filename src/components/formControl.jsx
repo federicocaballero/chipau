@@ -1,28 +1,51 @@
 import React from "react";
+import FormAdress from "./formAdress";
 
 const FormControl = () => {
    
-    function lpm (){
-        var checks = document.getElementById('checkbox1')
-        console.log(checks.checked)
-        if (checks.checked == true) {
-            alert('esta activo')
-        }else{alert('no estaactivo')}
     
+
+    //Cuando se selecciona el input de envio ejecuta esta funcion
+    function checkEnvio (){
+        var varEnvio =document.getElementById('inputEnvio');
+        const prueba = document.getElementById('formAdress')
+        console.log(varEnvio)
+        //Recupero el input y lo guardo en una variable
+        if (varEnvio.value=='envio') {
+            console.log(prueba)
+            // prueba.style.display="block";  
+            prueba.className = 'formAdress'   
+        } 
     }
-    return(
-        
+
+    function checkRetiro(){
+        var varEnvio =document.getElementById('inputEnvio');
+        const prueba = document.getElementById('formAdress')
+        //Recupero el input y lo guardo en una variable
+        if (varEnvio.value=='envio') {
+            console.log(prueba)
+            prueba.className = 'formAdressNone'
+        }
+    }
+    return(    
         <>
             <div class="form-check">
-                <h2>Si es para envio marcar la opcion de abajo e ingresar direccion</h2>
-            <input class="form-check-input" type="checkbox"  name="check" id="checkbox1"/>
-
-            <label class="form-check-label" onClick={()=> lpm()} for="checkbox1">
-                Envio
+            <input class="form-check-input" onClick={()=> checkRetiro()} type="radio" name="flexRadioDefault" id="inputRetiro" value="retiro"/>
+            <label class="form-check-label" for="flexRadioDefault1">
+                Retiro en el local
             </label>
             </div>
-
+            <div class="form-check">
+            <input class="form-check-input" onClick={()=> checkEnvio()} type="radio" name="flexRadioDefault" id="inputEnvio" value="envio"/>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Envio a domicilio
+            </label>
+            </div>
             
+            <div id="formAdress" className="formAdressNone">
+                <FormAdress/>
+            </div>
+              
         </>
     )
 

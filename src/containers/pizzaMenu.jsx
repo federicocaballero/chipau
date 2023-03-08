@@ -55,7 +55,7 @@ const PizzaMenu = () => {
             })}  </h1></button>
             <button><h1>Precio total {suma()} +envio </h1></button>
             
-            <a href={`https://wa.me/3704556925?text=${encodeURIComponent(cart)}`}>
+            <a href={`https://wa.me/3704556925?text=${encodeURIComponent(cart +'\n Precio Total: $'+suma()+' (+envío)')}`}>
             <button>completar pedido</button>
             </a>
             </div>
