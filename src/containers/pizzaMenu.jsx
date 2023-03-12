@@ -100,7 +100,6 @@ const PizzaMenu = () => {
              <div class="mb-3">
                  <label for="exampleInputEmail1" class="form-label">Direccion completa</label>
                  <input type="email" class="form-control" id="inputAdress" aria-describedby="emailHelp"/>
-                
              </div>           
             </form>
         </>
