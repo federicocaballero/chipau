@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import PizzaCard from "../components/pizzaCard";
 
+
 const PizzaMenu = () => {
+
     const pizzas =[
     {nombreEntera: 'Socrates entera', nombreMedia:'Media Socrates' ,img:'https://images.pexels.com/photos/1049620/pexels-photo-1049620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',nombre: 'socrates' , ingredientes:'Muzza, oregano y aceitunas' , precioEntera: 1900, precioMitad:200 },
 	{nombreEntera: 'Juana Manso entera', nombreMedia:'Media Juana Manso' ,img:'https://images.pexels.com/photos/263085/pexels-photo-263085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',nombre:'Juana manso' , ingredientes:'muzza, ceboola, queso roq y nueves' , precioEntera: 2500, precioMitad:200 },
@@ -17,7 +19,7 @@ const PizzaMenu = () => {
     function allFunctions(nombre, precio) {
         setcart(cart.concat(nombre));
         setcuenta(cuenta.concat(precio))
-        }    
+    }    
     
     function suma(){
        let suma = 0;
@@ -26,6 +28,27 @@ const PizzaMenu = () => {
        });
        
        return suma;
+    }
+
+    //Cuando se selecciona el input de envio ejecuta esta funcion
+    function checkEnvio (){
+        var varEnvio =document.getElementById('inputEnvio');
+        const prueba = document.getElementById('formAdress')
+        //Recupero el input y lo guardo en una variable
+        if (varEnvio.value=='envio') {
+            // prueba.style.display="block";  
+            prueba.className = 'formAdress'   
+        } 
+    }
+    //Cuando se selecciona el input de retiro ejecuta esta funcion
+    function checkRetiro(){
+        var varEnvio =document.getElementById('inputEnvio');
+        const prueba = document.getElementById('formAdress')
+        //Recupero el input y lo guardo en una variable
+        if (varEnvio.value=='envio') {
+            console.log(prueba)
+            prueba.className = 'formAdressNone'
+        }
     }
     return(
         <>
@@ -44,11 +67,9 @@ const PizzaMenu = () => {
                             </div>
                                         
                            </div>   
-                })       
-                
+                })         
             }   
-            {/* encodeURIComponent se encarga de pasar el string apto para la API, convierte todos los espacios en % y demas en el enlace */}
-                       
+            {/* encodeURIComponent se encarga de pasar el string apto para la API, convierte todos los espacios en % y demas en el enlace */}         
             <button><h1>Cantidad de productos {cart.length}</h1></button>
             <button><h1>Lista del pedido: {cart.map(function(e){
                 return <p>{e} <br /></p> 
@@ -57,10 +78,31 @@ const PizzaMenu = () => {
             
             <a href={`https://wa.me/3704556925?text=${encodeURIComponent(cart +'\n Precio Total: $'+suma()+' (+envío)')}`}>
             <button>completar pedido</button>
-            </a>
+            </a>            
             </div>
             </div>
-            
+            {/* FORM CONTROL */}
+            <div class="form-check">
+            <input class="form-check-input" onClick={()=> checkRetiro()} type="radio" name="flexRadioDefault" id="inputRetiro" value="retiro"/>
+            <label class="form-check-label" for="flexRadioDefault1">
+                Retiro en el local
+            </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" onClick={()=> checkEnvio()} type="radio" name="flexRadioDefault" id="inputEnvio" value="envio"/>
+            <label class="form-check-label"  for="flexRadioDefault2">
+                Envio a domicilio
+            </label>
+            </div>  
+
+            {/* FORM ADRESS */}
+            <form id="formAdress" className="formAdressNone" >
+             <div class="mb-3">
+                 <label for="exampleInputEmail1" class="form-label">Direccion completa</label>
+                 <input type="email" class="form-control" id="inputAdress" aria-describedby="emailHelp"/>
+                
+             </div>           
+            </form>
         </>
     )
 
